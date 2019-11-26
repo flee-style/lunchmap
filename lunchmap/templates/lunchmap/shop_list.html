@@ -1,0 +1,17 @@
+{% extends './base.html' %}
+
+{% block content %}
+<h1>お店の一覧</h1>
+<a href="{% url 'lunchmap:create' %}">お店の追加</a>
+<table class="table table-hover">
+{% for shop in object_list %}
+<tr>
+    <td>{{ shop.name }}</td>
+    <td>{{ shop.category.name }}</td>
+    <td><a href="{% url 'lunchmap:detail' shop.id %}" class="btn btn-outline-primary">詳細</a></td>
+</tr>
+{% endfor %}
+</table>
+
+
+{% endblock %}
