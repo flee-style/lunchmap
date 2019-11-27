@@ -1,0 +1,22 @@
+{% extends '../layout.html' %}
+{% block content %}
+<h1>Log in</h1>
+{% if form.errors %}
+    <p>ユーザーネームかパスワードが一致しません。</p>
+{% endif %}
+{% if next %}
+    {% if user.authenticated %}
+        <p>あなたのアカウントはアクセス権限がありません。</p>
+    {% else %}
+        <p>これを見るためにはログインが必要です。</p>
+    {% endif %}
+{% endif %}
+
+<form action="{% url 'login' %}" method="post">
+    {% csrf_token %}
+    <input type="hidden" name="next" value="{{ next }}"/>
+    {{ form.as_p }}
+    <button type="submit">Login</button>
+</form>
+
+{% endblock %}
